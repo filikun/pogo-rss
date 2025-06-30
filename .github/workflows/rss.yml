@@ -2,33 +2,32 @@ name: Generate Pokémon GO RSS
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # every day at 02:00 UTC
+    - cron: "0 6 * * *" # every day at 6am UTC
   workflow_dispatch:
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Install dependencies (if needed)
-        run: echo "No dependencies to install"
+      - name: Install dependencies
+        run: npm install
 
       - name: Run scraper
-        run: |
-          node scrapeduck-to-rss.js
+        run: node scrapeduck-to-multi-rss.js
 
-      - name: Copy RSS to public
+      - name: Copy RSS to docs
         run: |
-          mkdir -p public
-          cp pogo-*.xml public/
+          mkdir -p docs
+          cp pogo-*.xml docs/
 
       - name: Commit & push
         run: |
