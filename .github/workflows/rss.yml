@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Run scraper
-        run: node scrapeduck-to-multi-rss.js
+        run: node scrapeduck-to-rss.js
 
       - name: Copy RSS to docs
         run: |
