@@ -40,10 +40,12 @@ function formatRelative(start, end) {
 function buildRss(events, title, description) {
   const items = events.map((event) => {
     const startDate = new Date(event.start);
-    const endDate = new Date(event.end);
     const pubDate = startDate.toUTCString();
 
     const timeInfo = formatRelative(event.start, event.end);
+    const imageTag = event.image
+      ? `<enclosure url="${escapeXml(event.image)}" type="image/png" />`
+      : '';
 
     return `
     <item>
@@ -51,7 +53,8 @@ function buildRss(events, title, description) {
       <link>${event.link}</link>
       <description>${escapeXml(`${event.eventType} – ${timeInfo}`)}</description>
       <pubDate>${pubDate}</pubDate>
-      <guid isPermaLink="false">${escapeXml(event.id)}</guid>
+      <guid isPermaLink="false">${escapeXml(event.eventID || '')}</guid>
+      ${imageTag}
     </item>`;
   }).join('\n');
 
@@ -81,13 +84,18 @@ function filterUpcoming(events) {
     .sort((a, b) => new Date(a.start) - new Date(b.start));
 }
 
+// Ensure docs folder exists
+if (!fs.existsSync('docs')) {
+  fs.mkdirSync('docs');
+}
+
 // Run script
 fetchJson(sourceUrl).then((allEvents) => {
   const current = filterCurrent(allEvents);
   const upcoming = filterUpcoming(allEvents);
 
-  fs.writeFileSync('pogo-current.xml', buildRss(current, 'Pokémon GO - Current Event', 'The event that is ongoing now.'));
-  fs.writeFileSync('pogo-upcoming.xml', buildRss(upcoming, 'Pokémon GO - Upcoming Events', 'All upcoming events starting after now.'));
+  fs.writeFileSync('docs/pogo-current.xml', buildRss(current, 'Pokémon GO - Current Event', 'The event that is ongoing now.'));
+  fs.writeFileSync('docs/pogo-upcoming.xml', buildRss(upcoming, 'Pokémon GO - Upcoming Events', 'All upcoming events starting after now.'));
 
-  console.log('✅ Generated pogo-current.xml and pogo-upcoming.xml (no emojis)');
+  console.log('Ok');
 }).catch(console.error);
