@@ -2,7 +2,7 @@ name: Generate Pokémon GO RSS
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Runs every hour
+    - cron: "0 */3 * * *"  # Runs every hour
   workflow_dispatch:      # Allow manual runs
 
 jobs:
@@ -20,11 +20,6 @@ jobs:
 
       - name: Run scraper
         run: node scrapeduck-to-rss.js
-
-      - name: Copy RSS to docs
-        run: |
-          mkdir -p docs
-          cp pogo-*.xml docs/
 
       - name: Commit & push
         run: |
