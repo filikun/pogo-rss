@@ -38,7 +38,10 @@ function formatRelative(start, end) {
 }
 
 function buildRss(events, title, description) {
-  const items = events.map((event) => {
+  // Sortera om i omvänd ordning för att kompensera för Glance som visar listan baklänges
+  const sortedEvents = [...events].sort((a, b) => new Date(b.start) - new Date(a.start));
+
+  const items = sortedEvents.map((event) => {
     const startDate = new Date(event.start);
     const pubDate = startDate.toUTCString();
 
@@ -93,11 +96,11 @@ fetchJson(sourceUrl).then((allEvents) => {
   console.log('Found event types:', [...grouped.keys()]);
 
   for (const [eventType, events] of grouped) {
-    const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
+    // Här kan du eventuellt också sortera om, men buildRss gör det redan
     const title = `Pokémon GO Events - ${eventType}`;
     const description = `All events with eventType "${eventType}".`;
 
-    const rss = buildRss(sortedEvents, title, description);
+    const rss = buildRss(events, title, description);
 
     const safeName = eventType.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     fs.writeFileSync(`docs/pogo-${safeName}.xml`, rss);
