@@ -69,33 +69,39 @@ function buildRss(events, title, description) {
 </rss>`;
 }
 
-function filterCurrent(events) {
-  const now = new Date();
-  return events
-    .filter(e => new Date(e.start) <= now && new Date(e.end) >= now)
-    .sort((a, b) => new Date(a.start) - new Date(b.start))
-    .slice(0, 1);
+function groupByEventType(events) {
+  const map = new Map();
+  events.forEach(event => {
+    const type = event.eventType || 'unknown';
+    if (!map.has(type)) {
+      map.set(type, []);
+    }
+    map.get(type).push(event);
+  });
+  return map;
 }
 
-function filterUpcoming(events) {
-  const now = new Date();
-  return events
-    .filter(e => new Date(e.start) > now)
-    .sort((a, b) => new Date(a.start) - new Date(b.start));
-}
-
-// Ensure docs folder exists
+// Se till att docs-mappen finns
 if (!fs.existsSync('docs')) {
   fs.mkdirSync('docs');
 }
 
-// Run script
+// Kör script
 fetchJson(sourceUrl).then((allEvents) => {
-  const current = filterCurrent(allEvents);
-  const upcoming = filterUpcoming(allEvents);
+  const grouped = groupByEventType(allEvents);
 
-  fs.writeFileSync('docs/pogo-current.xml', buildRss(current, 'Pokémon GO - Current Event', 'The event that is ongoing now.'));
-  fs.writeFileSync('docs/pogo-upcoming.xml', buildRss(upcoming, 'Pokémon GO - Upcoming Events', 'All upcoming events starting after now.'));
+  console.log('Found event types:', [...grouped.keys()]);
 
-  console.log('Ok');
+  for (const [eventType, events] of grouped) {
+    const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
+    const title = `Pokémon GO Events - ${eventType}`;
+    const description = `All events with eventType "${eventType}".`;
+
+    const safeName = eventType.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const rss = buildRss(sortedEvents, title, description);
+
+    fs.writeFileSync(`docs/pogo-${safeName}.xml`, rss);
+  }
+
+  console.log('✅ Created RSS feeds per eventType in docs/');
 }).catch(console.error);
