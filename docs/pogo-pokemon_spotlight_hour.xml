@@ -6,29 +6,11 @@
     <description>All events with eventType &quot;pokemon-spotlight-hour&quot;.</description>
     
     <item>
-      <title>Roggenrola Spotlight Hour</title>
-      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-29/</link>
-      <description>pokemon-spotlight-hour – Starts in 28 days</description>
-      <pubDate>Tue, 29 Jul 2025 18:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pokemonspotlighthour2025-07-29</guid>
-      <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
-    </item>
-
-    <item>
-      <title>Jigglypuff Spotlight Hour</title>
-      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-22/</link>
-      <description>pokemon-spotlight-hour – Starts in 21 days</description>
-      <pubDate>Tue, 22 Jul 2025 18:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pokemonspotlighthour2025-07-22</guid>
-      <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
-    </item>
-
-    <item>
-      <title>Feebas Spotlight Hour</title>
-      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-15/</link>
-      <description>pokemon-spotlight-hour – Starts in 14 days</description>
-      <pubDate>Tue, 15 Jul 2025 18:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pokemonspotlighthour2025-07-15</guid>
+      <title>Party Hat Pikachu Spotlight Hour</title>
+      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-01/</link>
+      <description>pokemon-spotlight-hour – Starts today</description>
+      <pubDate>Tue, 01 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pokemonspotlighthour2025-07-01</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
     </item>
 
@@ -42,11 +24,29 @@
     </item>
 
     <item>
-      <title>Party Hat Pikachu Spotlight Hour</title>
-      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-01/</link>
-      <description>pokemon-spotlight-hour – Starts today</description>
-      <pubDate>Tue, 01 Jul 2025 18:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pokemonspotlighthour2025-07-01</guid>
+      <title>Feebas Spotlight Hour</title>
+      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-15/</link>
+      <description>pokemon-spotlight-hour – Starts in 14 days</description>
+      <pubDate>Tue, 15 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pokemonspotlighthour2025-07-15</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Jigglypuff Spotlight Hour</title>
+      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-22/</link>
+      <description>pokemon-spotlight-hour – Starts in 21 days</description>
+      <pubDate>Tue, 22 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pokemonspotlighthour2025-07-22</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Roggenrola Spotlight Hour</title>
+      <link>https://leekduck.com/events/pokemonspotlighthour2025-07-29/</link>
+      <description>pokemon-spotlight-hour – Starts in 28 days</description>
+      <pubDate>Tue, 29 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pokemonspotlighthour2025-07-29</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg" type="image/png" />
     </item>
   </channel>
