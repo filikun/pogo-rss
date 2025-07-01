@@ -38,8 +38,8 @@ function formatRelative(start, end) {
 }
 
 function buildRss(events, title, description) {
-  // Sortera om i omvänd ordning för att kompensera för Glance som visar listan baklänges
-  const sortedEvents = [...events].sort((a, b) => new Date(b.start) - new Date(a.start));
+  // Sort events: tidigast först
+  const sortedEvents = [...events].sort((a, b) => new Date(a.start) - new Date(b.start));
 
   const items = sortedEvents.map((event) => {
     const startDate = new Date(event.start);
@@ -96,7 +96,6 @@ fetchJson(sourceUrl).then((allEvents) => {
   console.log('Found event types:', [...grouped.keys()]);
 
   for (const [eventType, events] of grouped) {
-    // Här kan du eventuellt också sortera om, men buildRss gör det redan
     const title = `Pokémon GO Events - ${eventType}`;
     const description = `All events with eventType "${eventType}".`;
 
