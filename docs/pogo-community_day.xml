@@ -6,12 +6,12 @@
     <description>All events with eventType &quot;community-day&quot;.</description>
     
     <item>
-      <title>July Community Day Classic</title>
-      <link>https://leekduck.com/events/july-communitydayclassic2025/</link>
-      <description>community-day – Starts in 4 days</description>
-      <pubDate>Sat, 05 Jul 2025 14:00:00 GMT</pubDate>
-      <guid isPermaLink="false">july-communitydayclassic2025</guid>
-      <enclosure url="https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-07-05-july-communitydayclassic2025/eevee-community-day-classic.jpg?v3" type="image/png" />
+      <title>August Community Day</title>
+      <link>https://leekduck.com/events/august-communityday2025/</link>
+      <description>community-day – Starts in 60 days</description>
+      <pubDate>Sat, 30 Aug 2025 14:00:00 GMT</pubDate>
+      <guid isPermaLink="false">august-communityday2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/cd-default.jpg" type="image/png" />
     </item>
 
     <item>
@@ -24,12 +24,12 @@
     </item>
 
     <item>
-      <title>August Community Day</title>
-      <link>https://leekduck.com/events/august-communityday2025/</link>
-      <description>community-day – Starts in 60 days</description>
-      <pubDate>Sat, 30 Aug 2025 14:00:00 GMT</pubDate>
-      <guid isPermaLink="false">august-communityday2025</guid>
-      <enclosure url="https://cdn.leekduck.com/assets/img/events/cd-default.jpg" type="image/png" />
+      <title>July Community Day Classic</title>
+      <link>https://leekduck.com/events/july-communitydayclassic2025/</link>
+      <description>community-day – Starts in 4 days</description>
+      <pubDate>Sat, 05 Jul 2025 14:00:00 GMT</pubDate>
+      <guid isPermaLink="false">july-communitydayclassic2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-07-05-july-communitydayclassic2025/eevee-community-day-classic.jpg?v3" type="image/png" />
     </item>
   </channel>
 </rss>
