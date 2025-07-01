@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Pokémon GO Events - pokestop-showcase</title>
+    <link>https://leekduck.com/events/</link>
+    <description>All events with eventType &quot;pokestop-showcase&quot;.</description>
+    
+    <item>
+      <title>Bulbasaur, Charmander, and Squirtle PokéStop Showcases</title>
+      <link>https://leekduck.com/events/pokemon-showcase-bulbasaur-charmander-squirtle-2025-06-30/</link>
+      <description>pokestop-showcase – Happening now – ends in ~13h</description>
+      <pubDate>Mon, 30 Jun 2025 10:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pokemon-showcase-bulbasaur-charmander-squirtle-2025-06-30</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/pokestop-showcases-default.jpg" type="image/png" />
+    </item>
+  </channel>
+</rss>

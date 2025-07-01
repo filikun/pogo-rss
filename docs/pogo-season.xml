@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Pokémon GO Events - season</title>
+    <link>https://leekduck.com/events/</link>
+    <description>All events with eventType &quot;season&quot;.</description>
+    
+    <item>
+      <title>Delightful Days</title>
+      <link>https://leekduck.com/events/season-19-delightful-days/</link>
+      <description>season – Happening now – ends in ~1515h</description>
+      <pubDate>Tue, 03 Jun 2025 10:00:00 GMT</pubDate>
+      <guid isPermaLink="false">season-19-delightful-days</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-06-04-season-19-delightful-days/season-19-delightful-days.jpg" type="image/png" />
+    </item>
+  </channel>
+</rss>

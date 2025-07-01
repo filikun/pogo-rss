@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Pokémon GO Events - max-mondays</title>
+    <link>https://leekduck.com/events/</link>
+    <description>All events with eventType &quot;max-mondays&quot;.</description>
+    
+    <item>
+      <title>Dynamax Shuckle during Max Monday</title>
+      <link>https://leekduck.com/events/max-mondays-2025-06-30/</link>
+      <description>max-mondays – Starts in -1 days</description>
+      <pubDate>Mon, 30 Jun 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-mondays-2025-06-30</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Dynamax Gastly during Max Monday</title>
+      <link>https://leekduck.com/events/max-mondays-2025-07-07/</link>
+      <description>max-mondays – Starts in 6 days</description>
+      <pubDate>Mon, 07 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-mondays-2025-07-07</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Dynamax Wailmer during Max Monday</title>
+      <link>https://leekduck.com/events/max-mondays-2025-07-14/</link>
+      <description>max-mondays – Starts in 13 days</description>
+      <pubDate>Mon, 14 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-mondays-2025-07-14</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Dynamax Darumaka during Max Monday</title>
+      <link>https://leekduck.com/events/max-mondays-2025-07-21/</link>
+      <description>max-mondays – Starts in 20 days</description>
+      <pubDate>Mon, 21 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-mondays-2025-07-21</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Dynamax Kabuto during Max Monday</title>
+      <link>https://leekduck.com/events/max-mondays-2025-07-28/</link>
+      <description>max-mondays – Starts in 27 days</description>
+      <pubDate>Mon, 28 Jul 2025 18:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-mondays-2025-07-28</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg" type="image/png" />
+    </item>
+  </channel>
+</rss>

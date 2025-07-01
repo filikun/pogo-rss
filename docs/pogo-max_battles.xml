@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Pokémon GO Events - max-battles</title>
+    <link>https://leekduck.com/events/</link>
+    <description>All events with eventType &quot;max-battles&quot;.</description>
+    
+    <item>
+      <title>Max Battle Day</title>
+      <link>https://leekduck.com/events/max-battle-day-july-2025/</link>
+      <description>max-battles – Starts in 18 days</description>
+      <pubDate>Sat, 19 Jul 2025 06:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-battle-day-july-2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Max Battle Weekend</title>
+      <link>https://leekduck.com/events/max-battle-weekend-july-2025/</link>
+      <description>max-battles – Starts in 25 days</description>
+      <pubDate>Sat, 26 Jul 2025 06:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-battle-weekend-july-2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
+    </item>
+
+    <item>
+      <title>Max Battle Day</title>
+      <link>https://leekduck.com/events/max-battle-day-august-2025/</link>
+      <description>max-battles – Starts in 33 days</description>
+      <pubDate>Sun, 03 Aug 2025 06:00:00 GMT</pubDate>
+      <guid isPermaLink="false">max-battle-day-august-2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
+    </item>
+  </channel>
+</rss>

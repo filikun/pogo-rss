@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Pokémon GO Events - research-day</title>
+    <link>https://leekduck.com/events/</link>
+    <description>All events with eventType &quot;research-day&quot;.</description>
+    
+    <item>
+      <title>Research Day</title>
+      <link>https://leekduck.com/events/research-day-august-2025/</link>
+      <description>research-day – Starts in 32 days</description>
+      <pubDate>Sat, 02 Aug 2025 14:00:00 GMT</pubDate>
+      <guid isPermaLink="false">research-day-august-2025</guid>
+      <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
+    </item>
+  </channel>
+</rss>
