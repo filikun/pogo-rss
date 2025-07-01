@@ -3,12 +3,12 @@
   <channel>
     <title>Pokémon GO Events - event</title>
     <link>https://leekduck.com/events/</link>
-    <description>All events with eventType &quot;event&quot;.</description>
+    <description>Alla events med eventType &quot;event&quot;.</description>
     
     <item>
       <title>Pokémon GO&apos;s 9th Anniversary Party</title>
       <link>https://leekduck.com/events/pokemon-go-9th-anniversary-party/</link>
-      <description>event – Starts today</description>
+      <description>event – Startar idag</description>
       <pubDate>Tue, 01 Jul 2025 10:00:00 GMT</pubDate>
       <guid isPermaLink="false">pokemon-go-9th-anniversary-party</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-07-01-pokemon-go-9th-anniversary-party/pokemon-go-9th-anniversary.jpg" type="image/png" />
@@ -17,7 +17,7 @@
     <item>
       <title>Ultra Unlock: Hisui Celebration</title>
       <link>https://leekduck.com/events/ultra-unlock-hisui-celebration/</link>
-      <description>event – Starts in 7 days</description>
+      <description>event – Startar om 7 dagar</description>
       <pubDate>Tue, 08 Jul 2025 10:00:00 GMT</pubDate>
       <guid isPermaLink="false">ultra-unlock-hisui-celebration</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-07-08-ultra-unlock-hisui-celebration/ultra-unlock-hisui-celebration.jpg?v2" type="image/png" />
@@ -26,7 +26,7 @@
     <item>
       <title>Water Festival 2025</title>
       <link>https://leekduck.com/events/water-festival-2025/</link>
-      <description>event – Starts in 14 days</description>
+      <description>event – Startar om 14 dagar</description>
       <pubDate>Tue, 15 Jul 2025 10:00:00 GMT</pubDate>
       <guid isPermaLink="false">water-festival-2025</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
@@ -35,7 +35,7 @@
     <item>
       <title>Summer Concert</title>
       <link>https://leekduck.com/events/summer-concert/</link>
-      <description>event – Starts in 18 days</description>
+      <description>event – Startar om 18 dagar</description>
       <pubDate>Sat, 19 Jul 2025 10:00:00 GMT</pubDate>
       <guid isPermaLink="false">summer-concert</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
@@ -44,7 +44,7 @@
     <item>
       <title>Adventure Week 2025</title>
       <link>https://leekduck.com/events/adventure-week-2025/</link>
-      <description>event – Starts in 28 days</description>
+      <description>event – Startar om 28 dagar</description>
       <pubDate>Tue, 29 Jul 2025 10:00:00 GMT</pubDate>
       <guid isPermaLink="false">adventure-week-2025</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
@@ -53,7 +53,7 @@
     <item>
       <title>Hatch Day</title>
       <link>https://leekduck.com/events/hatch-day-august-2025/</link>
-      <description>event – Starts in 39 days</description>
+      <description>event – Startar om 39 dagar</description>
       <pubDate>Sat, 09 Aug 2025 14:00:00 GMT</pubDate>
       <guid isPermaLink="false">hatch-day-august-2025</guid>
       <enclosure url="https://cdn.leekduck.com/assets/img/events/events-default-img.jpg" type="image/png" />
