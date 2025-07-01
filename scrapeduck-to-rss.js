@@ -25,16 +25,21 @@ function formatRelative(start, end) {
   const endDate = new Date(end);
 
   if (startDate <= now && endDate >= now) {
-    const endsIn = Math.round((endDate - now) / (1000 * 60 * 60));
-    return `Happening now – ends in ~${endsIn}h`;
+    return `Pågår just nu`;
   }
 
-  const delta = startDate - now;
+  // Jämför endast datum utan tid
+  const startDateMidnight = new Date(startDate);
+  startDateMidnight.setHours(0, 0, 0, 0);
+  const nowMidnight = new Date(now);
+  nowMidnight.setHours(0, 0, 0, 0);
+
+  const delta = startDateMidnight - nowMidnight;
   const days = Math.round(delta / (1000 * 60 * 60 * 24));
 
-  if (days === 0) return 'Starts today';
-  if (days === 1) return 'Starts tomorrow';
-  return `Starts in ${days} days`;
+  if (days === 0) return 'Startar idag';
+  if (days === 1) return 'Startar imorgon';
+  return `Startar om ${days} dagar`;
 }
 
 function buildRss(events, title, description) {
@@ -71,37 +76,35 @@ function buildRss(events, title, description) {
 
 function groupByEventType(events) {
   const map = new Map();
-  events.forEach(event => {
+  for (const event of events) {
     const type = event.eventType || 'unknown';
-    if (!map.has(type)) {
-      map.set(type, []);
-    }
+    if (!map.has(type)) map.set(type, []);
     map.get(type).push(event);
-  });
+  }
   return map;
 }
 
-// Se till att docs-mappen finns
+// Skapa docs-mapp om den inte finns
 if (!fs.existsSync('docs')) {
   fs.mkdirSync('docs');
 }
 
-// Kör script
+// Kör scriptet
 fetchJson(sourceUrl).then((allEvents) => {
   const grouped = groupByEventType(allEvents);
 
-  console.log('Found event types:', [...grouped.keys()]);
-
   for (const [eventType, events] of grouped) {
+    // Sortera efter startdatum, omvänd ordning (närmast i tid först)
     const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
-    const title = `Pokémon GO Events - ${eventType}`;
-    const description = `All events with eventType "${eventType}".`;
 
-    const safeName = eventType.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const title = `Pokémon GO Events - ${eventType}`;
+    const description = `Alla events med eventType "${eventType}".`;
+
     const rss = buildRss(sortedEvents, title, description);
 
+    const safeName = eventType.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     fs.writeFileSync(`docs/pogo-${safeName}.xml`, rss);
   }
 
-  console.log('✅ Created RSS feeds per eventType in docs/');
+  console.log('✅ Skapat RSS feeds per eventType i docs/ med omvänd ordning och "Startar idag"');
 }).catch(console.error);
