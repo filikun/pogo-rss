@@ -2,8 +2,8 @@ name: Generate Pokémon GO RSS
 
 on:
   schedule:
-    - cron: "0 */3 * * *"  # Runs every 3 hours
-  workflow_dispatch:      # Allow manual runs
+    - cron: "0 */3 * * *"  # Kör var tredje timme
+  workflow_dispatch:      # Möjlighet att köra manuellt
 
 jobs:
   build:
@@ -17,9 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-
-      - name: Install dependencies
-        run: npm install luxon
 
       - name: Run scraper
         run: node scrapeduck-to-rss.js
