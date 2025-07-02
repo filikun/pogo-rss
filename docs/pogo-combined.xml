@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>Pokémon GO Events - event</title>
+    <title>Pokémon GO Events - Combined</title>
     <link>https://leekduck.com/events/</link>
-    <description>All events with eventType &quot;event&quot;.</description>
+    <description>Combined feed for event types: community_day, event, max_mondays, spotlight_hour, raid_day, raid_hour, research_day</description>
     
     <item>
       <title>Pokémon GO&apos;s 9th Anniversary Party</title>
