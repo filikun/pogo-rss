@@ -25,31 +25,39 @@ function formatRelative(start, end) {
   const endDate = new Date(end);
 
   if (startDate <= now && endDate >= now) {
-    return `Happening now – ends soon`;
+    return `Active`;
   }
 
   const delta = startDate - now;
   const days = Math.round(delta / (1000 * 60 * 60 * 24));
+  const hours = Math.round(delta / (1000 * 60 * 60));
 
-  if (days === 0) return 'Starts today';
+  if (days === 0 && hours > 0) return `Starts in ${hours}h`;
+  if (days === 0 && hours <= 0) return `Active`;  // fallback
   if (days === 1) return 'Starts tomorrow';
-  return `Starts in ${days} days`;
+  if (days > 1) return `Starts in ${days} days`;
+  return `Started`;
 }
 
-// Formaterar pubDate i korrekt RSS-format med GMT-zon
+// Formaterar datum till RSS pubDate i lokal tid med korrekt offset
 function formatRssDateLocal(date) {
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  const dayName = days[date.getUTCDay()];
-  const day = date.getUTCDate().toString().padStart(2, '0');
-  const month = months[date.getUTCMonth()];
-  const year = date.getUTCFullYear();
-  const hours = date.getUTCHours().toString().padStart(2, '0');
-  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-  const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+  const dayName = days[date.getDay()];
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
 
-  return `${dayName}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} GMT`;
+  const tzOffset = -date.getTimezoneOffset();
+  const tzSign = tzOffset >= 0 ? '+' : '-';
+  const tzHours = Math.floor(Math.abs(tzOffset) / 60).toString().padStart(2, '0');
+  const tzMinutes = (Math.abs(tzOffset) % 60).toString().padStart(2, '0');
+
+  return `${dayName}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} ${tzSign}${tzHours}${tzMinutes}`;
 }
 
 function buildRss(events, title, description) {
@@ -87,6 +95,9 @@ function buildRss(events, title, description) {
 function groupByEventType(events) {
   const map = new Map();
   events.forEach(event => {
+    // Filtrera bort event som redan är slutna
+    if (new Date(event.end) < new Date()) return;
+
     const type = event.eventType || 'unknown';
     if (!map.has(type)) {
       map.set(type, []);
@@ -101,24 +112,14 @@ if (!fs.existsSync('docs')) {
   fs.mkdirSync('docs');
 }
 
-const combinedEventTypes = [
-  'community_day',
-  'event',
-  'max_mondays',
-  'spotlight_hour',
-  'raid_day',
-  'raid_hour',
-  'research_day'
-];
-
 // Kör scriptet
 fetchJson(sourceUrl).then((allEvents) => {
   const grouped = groupByEventType(allEvents);
 
   console.log('Found event types:', [...grouped.keys()]);
 
-  // Skapa rss per eventType
   for (const [eventType, events] of grouped) {
+    // Sortera i stigande ordning (snartast först)
     const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
     const title = `Pokémon GO Events - ${eventType}`;
     const description = `All events with eventType "${eventType}".`;
@@ -129,23 +130,5 @@ fetchJson(sourceUrl).then((allEvents) => {
     fs.writeFileSync(`docs/pogo-${safeName}.xml`, rss);
   }
 
-  // Skapa ett kombinerat feed för de utvalda eventtyperna
-  const combinedEvents = [];
-  combinedEventTypes.forEach(type => {
-    if (grouped.has(type)) {
-      combinedEvents.push(...grouped.get(type));
-    }
-  });
-
-  // Sortera globalt på starttid
-  combinedEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
-
-  const combinedRss = buildRss(
-    combinedEvents,
-    'Pokémon GO Events - Combined',
-    `Combined feed for event types: ${combinedEventTypes.join(', ')}`
-  );
-  fs.writeFileSync('docs/pogo-combined.xml', combinedRss);
-
-  console.log('✅ Created RSS feeds per eventType + combined feed in docs/');
+  console.log('✅ Created RSS feeds per eventType in docs/');
 }).catch(console.error);
