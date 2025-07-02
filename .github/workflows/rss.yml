@@ -2,7 +2,7 @@ name: Generate Pokémon GO RSS
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "2 * * * *"
   workflow_dispatch: 
 
 jobs:
