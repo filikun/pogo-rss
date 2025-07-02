@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const sourceUrl = 'https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.min.json';
 
+// Hämta JSON från URL
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -13,31 +14,14 @@ function fetchJson(url) {
   });
 }
 
+// Escape för XML-säker text
 function escapeXml(str) {
   return str?.replace(/[<>&'"]/g, (c) => (
     { '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]
   )) || '';
 }
 
-function formatRelative(start, end) {
-  const now = new Date();
-  const startDate = new Date(start);
-  const endDate = new Date(end);
-
-  if (startDate <= now && endDate >= now) {
-    const endsIn = Math.round((endDate - now) / (1000 * 60 * 60));
-    return `Happening now – ends in ~${endsIn}h`;
-  }
-
-  const delta = startDate - now;
-  const days = Math.round(delta / (1000 * 60 * 60 * 24));
-
-  if (days === 0) return 'Starts today';
-  if (days === 1) return 'Starts tomorrow';
-  return `Starts in ${days} days`;
-}
-
-// Format date to RSS pubDate with local timezone offset
+// Formatera pubDate enligt lokal tid med tidszon
 function formatRssDateLocal(date) {
   const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -58,6 +42,26 @@ function formatRssDateLocal(date) {
   return `${dayName}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} ${tzSign}${tzHours}${tzMinutes}`;
 }
 
+// Formatera relativ tidtext
+function formatRelative(start, end) {
+  const now = new Date();
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  if (startDate <= now && endDate >= now) {
+    const endsIn = Math.round((endDate - now) / (1000 * 60 * 60));
+    return `Happening now – ends in ~${endsIn}h`;
+  }
+
+  const delta = startDate - now;
+  const days = Math.round(delta / (1000 * 60 * 60 * 24));
+
+  if (days === 0) return 'Starts today';
+  if (days === 1) return 'Starts tomorrow';
+  return `Starts in ${days} days`;
+}
+
+// Skapa RSS från events
 function buildRss(events, title, description) {
   const items = events.map((event) => {
     const startDate = new Date(event.start);
@@ -90,6 +94,7 @@ function buildRss(events, title, description) {
 </rss>`;
 }
 
+// Gruppera events efter eventType
 function groupByEventType(events) {
   const map = new Map();
   events.forEach(event => {
@@ -102,19 +107,19 @@ function groupByEventType(events) {
   return map;
 }
 
-// Create docs folder if not exists
+// Skapa docs-mapp om den inte finns
 if (!fs.existsSync('docs')) {
   fs.mkdirSync('docs');
 }
 
-// Run script
+// Kör skriptet
 fetchJson(sourceUrl).then((allEvents) => {
   const grouped = groupByEventType(allEvents);
 
   console.log('Found event types:', [...grouped.keys()]);
 
   for (const [eventType, events] of grouped) {
-    // Sort ascending by start date (soonest first)
+    // Sortera events i stigande ordning efter starttid
     const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
     const title = `Pokémon GO Events - ${eventType}`;
     const description = `All events with eventType "${eventType}".`;
@@ -125,5 +130,5 @@ fetchJson(sourceUrl).then((allEvents) => {
     fs.writeFileSync(`docs/pogo-${safeName}.xml`, rss);
   }
 
-  console.log('✅ Created RSS feeds per eventType in docs/');
+  console.log('Created RSS feeds per eventType in docs/');
 }).catch(console.error);
