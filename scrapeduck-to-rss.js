@@ -1,10 +1,8 @@
 const https = require('https');
 const fs = require('fs');
-const { DateTime } = require('luxon'); // Importera luxon
 
 const sourceUrl = 'https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.min.json';
 
-// Hämta JSON
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -15,41 +13,38 @@ function fetchJson(url) {
   });
 }
 
-// Escape XML
 function escapeXml(str) {
   return str?.replace(/[<>&'"]/g, (c) => (
     { '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' }[c]
   )) || '';
 }
 
-// Formatera relativ tid (oförändrad)
 function formatRelative(start, end) {
-  const now = DateTime.local();
-  const startDate = DateTime.fromISO(start);
-  const endDate = DateTime.fromISO(end);
+  const now = new Date();
+  const startDate = new Date(start);
+  const endDate = new Date(end);
 
   if (startDate <= now && endDate >= now) {
-    const endsIn = Math.round(endDate.diff(now, 'hours').hours);
-    return `Happening now – ends in ~${endsIn}h`;
+    const endsInHours = Math.round((endDate - now) / (1000 * 60 * 60));
+    if (endsInHours > 0) {
+      return `Happening now – ends in ~${endsInHours}h`;
+    } else {
+      return `Happening now – ends soon`;
+    }
   }
 
-  const delta = startDate.diff(now, 'days').days;
-  const days = Math.round(delta);
+  const delta = startDate - now;
+  const days = Math.round(delta / (1000 * 60 * 60 * 24));
 
   if (days === 0) return 'Starts today';
   if (days === 1) return 'Starts tomorrow';
   return `Starts in ${days} days`;
 }
 
-// Formatera pubDate i lokal svensk tid med korrekt tidszon (CET/CEST)
-function formatRssDateLocal(dateString) {
-  return DateTime.fromISO(dateString, { zone: 'Europe/Stockholm' }).toRFC2822();
-}
-
-// Bygg RSS
 function buildRss(events, title, description) {
   const items = events.map((event) => {
-    const pubDate = formatRssDateLocal(event.start);
+    const startDate = new Date(event.start);
+    const pubDate = startDate.toUTCString(); // RFC 1123 format with GMT
 
     const timeInfo = formatRelative(event.start, event.end);
     const imageTag = event.image
@@ -78,7 +73,6 @@ function buildRss(events, title, description) {
 </rss>`;
 }
 
-// Gruppera events efter typ
 function groupByEventType(events) {
   const map = new Map();
   events.forEach(event => {
@@ -91,18 +85,19 @@ function groupByEventType(events) {
   return map;
 }
 
-// Skapa mappen docs om den inte finns
+// Create docs folder if not exists
 if (!fs.existsSync('docs')) {
   fs.mkdirSync('docs');
 }
 
-// Kör script
+// Run script
 fetchJson(sourceUrl).then((allEvents) => {
   const grouped = groupByEventType(allEvents);
 
   console.log('Found event types:', [...grouped.keys()]);
 
   for (const [eventType, events] of grouped) {
+    // Sort ascending by start date (soonest first)
     const sortedEvents = events.sort((a, b) => new Date(a.start) - new Date(b.start));
     const title = `Pokémon GO Events - ${eventType}`;
     const description = `All events with eventType "${eventType}".`;
