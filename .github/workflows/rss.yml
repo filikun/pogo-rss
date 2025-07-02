@@ -2,8 +2,8 @@ name: Generate Pokémon GO RSS
 
 on:
   schedule:
-    - cron: "0 */3 * * *"  # Kör var tredje timme
-  workflow_dispatch:      # Möjlighet att köra manuellt
+    - cron: "0 * * * *"
+  workflow_dispatch: 
 
 jobs:
   build:
